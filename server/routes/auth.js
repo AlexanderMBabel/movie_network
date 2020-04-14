@@ -6,11 +6,11 @@ const bcrypt = require('bcryptjs');
 const auth = require('../middleware/auth');
 require('dotenv').config();
 
-/* @Get
-   Validate JWT token
+/* @post
+   Login user
 */
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const user = await Users.find({
       email: req.email

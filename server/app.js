@@ -8,10 +8,11 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
-var app = express();
+const app = express();
 
 app.set('port', process.env.PORT || 4000);
 console.log('open on port', process.env.PORT);
@@ -38,6 +39,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 console.log('db connected');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
