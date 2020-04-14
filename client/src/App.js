@@ -5,6 +5,7 @@ import Landing from './components/landing/Landing';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
+import PasswordRecover from './components/login/PasswordRecover';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Switch>
         <Route extact path="/Signup" component={SignUp} />
+        <Route extact path="/Forgot" component={PasswordRecover} />
         <Route extact path="/Login" component={Login} />
         <Route extact path="/Dashboard" component={Dashboard} />
 

@@ -58,13 +58,8 @@ router.post(
       email: email,
       password: hashPassword
     });
+
     try {
-      const user = await Users.find({
-        email: email
-      }).select('email');
-      if (user) {
-        res.json('email is in use');
-      }
       await users.save();
       const payload = {
         email: email,
@@ -94,25 +89,20 @@ router.post(
         }
       );
     } catch (error) {
-      console.log(error.message);
-      if (error.code === 11000) {
-        res.json({
-          errors: [
-            {
-              msg: 'Please enter a different email adress, Email already exists'
-            }
-          ]
-        });
-      }
-      if (error.name === 'validationError') {
-        res.json({
-          errors: [
-            {
-              msg: error.message
-            }
-          ]
-        });
-      }
+      console.table(error.name);
+      // if (error.code === 11000) {
+      //   res.status(401).json({
+      //     errors: [
+      //       {
+      //         msg: 'Please enter a different email adress, Email already exists'
+      //       }
+      //     ]
+      //   });
+      // }
+
+      res.status(401).json({
+        msg: error.message
+      });
     }
   }
 );

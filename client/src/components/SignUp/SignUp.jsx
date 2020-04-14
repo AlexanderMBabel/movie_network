@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const SignUp = props => {
   const [email, setEmail] = useState('');
@@ -47,42 +46,46 @@ const SignUp = props => {
           localStorage.setItem('token', res.data.token);
           props.history.push('/Dashboard');
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+          setErrors([err.response.data.msg]);
+        });
     }
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div style={{ height: '90vh' }} className="w-full flex items-center justify-center">
       {}
-      <div>
-        {errors.map(error => (
-          <div className="bg-red-500">{error}</div>
-        ))}
-      </div>
-      <div className="w-1/5 flex-row items-center p-3 justify-center container rounded shadow-md  ">
+
+      <div className="xl:w-1/6 lg:w-1/5 md:1/4 w-1/2 flex-row items-center p-3 justify-center container rounded shadow-md  ">
         <div className="text-center text-xl text-gray-900">
           <p>Sign Up</p>
         </div>
-        <div className="">
-          <label htmlFor="email" className="font-semibold text-gray-700 text-sm">
-            Email
-          </label>
-          <input id="email" name="email" onChange={changeHandler} value={email} className="shadow-md rounded p-2" />
+        <div className="p-2">
+          {errors.map(error => (
+            <div key={error} className="bg-red-500">
+              {error}
+            </div>
+          ))}
         </div>
-        <div className="">
+        <div className="flex-row justify-center items-center">
+          <label className="font-semibold text-gray-700 text-sm">Email</label>
+          <input id="email" name="email" onChange={changeHandler} value={email} className="shadow-md rounded p-2 w-full" />
+        </div>
+        <div className="flex-row justify-center items-center">
           <label htmlFor="password" className="font-semibold text-gray-700 text-sm">
             Password
           </label>
-          <input id="password" name="password" onChange={changeHandler} value={password} className="shadow-md rounded p-2" />
+          <input id="password" name="password" onChange={changeHandler} value={password} className="shadow-md rounded p-2 w-full" />
         </div>
-        <div className="">
+        <div className="flex-row justify-center items-center">
           <label htmlFor="password2" className="font-semibold text-gray-700 text-sm">
             Repeat Password
           </label>
-          <input id="password2" name="password2" onChange={changeHandler} value={password2} className="shadow-md rounded p-2" />
+          <input id="password2" name="password2" onChange={changeHandler} value={password2} className="shadow-md rounded p-2 w-full" />
         </div>
         <div className="flex items-center justify-center m-4">
-          <button onClick={submitHandler} className="p-2 shadow text-white bg-blue-700 rounded hover:bg-blue-300">
+          <button onClick={submitHandler} className="p-2 shadow text-white bg-teal-600 rounded hover:bg-teal-400">
             Sign Up
           </button>
         </div>
@@ -91,9 +94,6 @@ const SignUp = props => {
   );
 };
 
-SignUp.propTypes = {
-  submitHandler: PropTypes.func.isRequired,
-  validate: PropTypes.func.isRequired
-};
+SignUp.propTypes = {};
 
 export default SignUp;

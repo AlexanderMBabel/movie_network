@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Login = props => {
@@ -17,7 +18,17 @@ const Login = props => {
         <div className="flex items-center justify-center m-4">
           <button className="p-2 w-1/3  text-white rounded shadow-md bg-teal-500 text-center hover:bg-teal-300">Login</button>
           <div className="w-1/3"></div>
-          <p className="italic text-xs mt-4 text-center w-1/3">Forgot Password ?</p>
+          <Link to="/Forgot" className="italic text-xs mt-4 text-center w-1/3 hover:text-teal-400">
+            Forgot Password ?
+          </Link>
+        </div>
+        <div className="flex w-full items-center justify-center">
+          <p className="text-gray-900 text-md">
+            Not a member?
+            <Link className="hover:text-teal-300 text-teal-600 ml-2" to="/Signup">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </div>
