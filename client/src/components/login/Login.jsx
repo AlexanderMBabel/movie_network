@@ -15,7 +15,7 @@ const Login = props => {
           <input className="p-2 shadow-md rounded-sm w-full"></input>
         </div>
         <div className="flex items-center justify-center m-4">
-          <button className="p-2 w-1/3  text-white rounded shadow-md bg-teal-500 text-center">Login</button>
+          <button className="p-2 w-1/3  text-white rounded shadow-md bg-teal-500 text-center hover:bg-teal-300">Login</button>
           <div className="w-1/3"></div>
           <p className="italic text-xs mt-4 text-center w-1/3">Forgot Password ?</p>
         </div>
