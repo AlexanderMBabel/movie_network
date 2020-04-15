@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
-const Login = props => {
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+const Login = ({ login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
 
   const changeHandler = e => {
     if (e.target.name === 'email') {
@@ -17,7 +19,7 @@ const Login = props => {
   };
 
   const submitHandler = e => {
-    axios.get('http://localhost:4000/auth');
+    login({ email, password });
   };
 
   return (
@@ -54,6 +56,8 @@ const Login = props => {
   );
 };
 
-Login.propTypes = {};
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
 
-export default Login;
+export default connect(null, { login })(Login);
