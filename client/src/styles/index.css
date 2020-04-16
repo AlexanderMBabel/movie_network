@@ -3,3 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.side_link {
+  @apply ml-1 p-2 py-4 text-teal-200 font-semibold text-sm;
+}
+
+.side_link:hover {
+  @apply text-teal-500;
+}

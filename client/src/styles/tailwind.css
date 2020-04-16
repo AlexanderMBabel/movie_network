@@ -13184,6 +13184,20 @@ video {
   transition-duration: 1000ms;
 }
 
+.side_link {
+  margin-left: 0.25rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #b2f5ea;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.side_link:hover {
+  color: #38b2ac;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
