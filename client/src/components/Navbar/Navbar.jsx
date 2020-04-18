@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
+import { MdMovieFilter } from 'react-icons/md';
 
 const Navbar = ({ isAuthenticated, logout }) => {
   return (
     <div name="container" className="flex justify-between bg-teal-300 text-gray-700 p-4">
       <div name="links_left" className="flex">
-        <div className="">Logo</div>
-        <Link className="ml-2" to="/">
-          MovieO
+        <div className="text-2xl">
+          <MdMovieFilter />
+        </div>
+        <Link className="ml-2 text-xl" to="/">
+          EMN
+        </Link>
+        <Link className="ml-2" to="/createprofile">
+          profile
         </Link>
       </div>
       {!isAuthenticated && (
@@ -43,7 +49,7 @@ const Navbar = ({ isAuthenticated, logout }) => {
 };
 
 Navbar.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
   logout: PropTypes.func.isRequired
 };
 

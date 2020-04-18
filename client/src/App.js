@@ -16,6 +16,7 @@ import Favorites from './components/Dashboard/Favorites';
 import Reviews from './components/Dashboard/Reviews';
 import Messages from './components/Dashboard/Messages';
 import Lists from './components/Dashboard/Lists';
+import CreateProfile from './components/CreateProfile/CreateProfile';
 
 function App({ isAuthenticated, loadUser }) {
   useEffect(() => {
@@ -23,7 +24,7 @@ function App({ isAuthenticated, loadUser }) {
   }, []);
 
   return (
-    <div className="">
+    <div className="baloo-font">
       <Navbar />
       {/* {isAuthenticated && <Redirect to="/Dashboard" />} */}
 
@@ -31,6 +32,7 @@ function App({ isAuthenticated, loadUser }) {
         <Route extact path="/Signup" component={SignUp} />
         <Route extact path="/Forgot" component={PasswordRecover} />
         <Route extact path="/Login" component={Login} />
+        <Route extact path="/createprofile" component={CreateProfile} />
         <ProtectedRoute extact path="/Dashboard/Lists" component={Lists} />
         <ProtectedRoute extact path="/Dashboard/Messages" component={Messages} />
         <ProtectedRoute extact path="/Dashboard/Reviews" component={Reviews} />

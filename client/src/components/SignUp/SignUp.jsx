@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { register } from '../../actions/auth';
 
-const SignUp = props => {
+const SignUp = ({ register }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
@@ -36,20 +38,7 @@ const SignUp = props => {
 
   const submitHandler = () => {
     if (validate(email, password, password2)) {
-      axios
-        .post('http://localhost:4000/users', { email, password })
-        .then(res => {
-          setErrors(['Success']);
-          setEmail('');
-          setPassword('');
-          setPassword2('');
-          localStorage.setItem('token', res.data.token);
-          props.history.push('/Dashboard');
-        })
-        .catch(err => {
-          console.log(err);
-          setErrors([err.response.data.msg]);
-        });
+      register({ email, password });
     }
   };
 
@@ -94,6 +83,8 @@ const SignUp = props => {
   );
 };
 
-SignUp.propTypes = {};
+SignUp.propTypes = {
+  register: PropTypes.func.isRequired
+};
 
-export default SignUp;
+export default connect(null, { register })(SignUp);

@@ -10,7 +10,10 @@ const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   bio: String,
-  profileImage: String
+  profileImage: String,
+  intrests: String,
+  birthDate: String,
+  country: String
 });
 
 userSchema.plugin(uniqueValidator);

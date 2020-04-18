@@ -22,6 +22,27 @@ export const loadUser = () => async dispatch => {
   }
 };
 
+export const register = body => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/users`, body, config);
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
+    });
+    history.push('/createprofile');
+  } catch (error) {
+    dispatch({
+      type: REGISTER_FAILED
+    });
+  }
+};
+
 export const login = body => async dispatch => {
   const config = {
     headers: {
@@ -30,7 +51,7 @@ export const login = body => async dispatch => {
   };
 
   try {
-    const res = await axios.post('http://localhost:4000/auth/login', body);
+    const res = await axios.post('http://localhost:4000/auth/login', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data

@@ -5,6 +5,8 @@ const Users = require('../models/users');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/auth');
+const path = require('path');
 
 /* @Get
    Get users by email
@@ -107,4 +109,51 @@ router.post(
   }
 );
 
+/*
+@ Post 
+  Private
+  Upload an image and store location in db
+*/
+router.post('/upload', auth, async (req, res) => {
+  if (req.files === null) {
+    console.log(req);
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+  const file = req.files.image;
+  const userEmail = req.email;
+  const user = userEmail.split('@')[0];
+
+  console.log(file);
+
+  const imagePath = path.join(__dirname, '..', '/public/profile_images/', `profileImage${user}${file.mimetype === 'image/png' ? '.png' : '.jpg'}`);
+  file.mv(imagePath, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+  });
+
+  Users.findOneAndUpdate({ email: req.email }, { profileImage: imagePath }, { upsert: true }, (err, doc) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    res.json({ fileName: file.name, filePath: imagePath });
+  });
+});
+
+/*
+@ Post 
+  Private
+  Update user profile info
+*/
+router.post('/profile', auth, (req, res) => {
+  console.log(req);
+  Users.findOneAndUpdate({ email: req.email }, req.body, { upsert: true }, (err, doc) => {
+    if (err) {
+      // console.error(err);
+      return res.status(500).json(err);
+    }
+    res.json('Profile Successfully updated');
+  });
+});
 module.exports = router;

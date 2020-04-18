@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;700&family=Cinzel&family=Lexend+Giga&display=swap');
 @tailwind base;
 
 @tailwind components;
-
-@tailwind utilities;
 
 .side_link {
   @apply ml-1 p-2 py-4 text-teal-200 font-semibold text-sm;
@@ -10,4 +9,52 @@
 
 .side_link:hover {
   @apply text-teal-500;
+}
+
+.form-input {
+  @apply p-2 rounded shadow-inner bg-orange-100 w-full;
+}
+@tailwind utilities;
+
+.baloo-font {
+  font-family: 'Baloo Bhaina 2', cursive;
+}
+.lexend-font {
+  font-family: 'Lexend Giga', sans-serif;
+}
+.cinzel-font {
+  font-family: 'Cinzel', serif;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  @apply shadow bg-pink-600;
+}
+
+[type='file'] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  /* position: absolute !important; */
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type='file'] + label {
+  @apply font-bold text-center flex-wrap flex-row text-pink-100;
+
+  cursor: pointer;
+}
+
+[type='file'] + label:hover {
+  @apply text-teal-300;
+}
+
+[type='file'] + label span {
+  @apply font-bold text-center;
+  font-size: 1rem;
 }
