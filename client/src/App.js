@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 import Profile from './components/Dashboard/Profile';
-import Search from './components/Dashboard/Search';
+import Search from './components/Search/Search';
 import Favorites from './components/Dashboard/Favorites';
 import Reviews from './components/Dashboard/Reviews';
 import Messages from './components/Dashboard/Messages';

@@ -3,8 +3,21 @@
 
 @tailwind components;
 
+.search-link {
+  @apply font-semibold m-4 text-gray-800 outline-none;
+}
+.search-link:hover {
+  @apply text-teal-700;
+}
+.search-link:focus {
+  @apply outline-none;
+}
+.search-link-selected {
+  @apply rounded shadow text-lg text-teal-800 font-bold;
+}
+
 .side_link {
-  @apply ml-1 p-2 py-4 text-teal-200 font-semibold text-sm;
+  @apply ml-1 mt-4 mb-4 p-2 py-4 text-teal-200 font-semibold text-sm;
 }
 
 .side_link:hover {

@@ -3,12 +3,17 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import history from '../history';
 export const loadUser = () => async dispatch => {
+  let config;
   if (localStorage.token) {
-    setAuthToken(localStorage.token);
+    config = {
+      headers: {
+        'x-auth-token': localStorage.token
+      }
+    };
   }
 
   try {
-    const res = await axios.get('http://localhost:4000/auth');
+    const res = await axios.get('http://localhost:4000/auth', config);
     console.log(res.data);
     dispatch({
       type: USER_LOADED,

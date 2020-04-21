@@ -621,8 +621,33 @@ video {
   }
 }
 
+.search-link {
+  font-weight: 600;
+  margin: 1rem;
+  color: #2d3748;
+  outline: 0;
+}
+
+.search-link:hover {
+  color: #2c7a7b;
+}
+
+.search-link:focus {
+  outline: 0;
+}
+
+.search-link-selected {
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-size: 1.125rem;
+  color: #285e61;
+  font-weight: 700;
+}
+
 .side_link {
   margin-left: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
