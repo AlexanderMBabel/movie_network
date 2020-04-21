@@ -71,3 +71,10 @@
   @apply font-bold text-center;
   font-size: 1rem;
 }
+
+.fav-star {
+  @apply text-gray-700 shadow-sm;
+}
+.fav-star:hover {
+  @apply text-teal-700;
+}

@@ -13283,6 +13283,15 @@ video {
   font-size: 1rem;
 }
 
+.fav-star {
+  color: #4a5568;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.fav-star:hover {
+  color: #2c7a7b;
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;

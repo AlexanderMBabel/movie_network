@@ -5,3 +5,6 @@ export const REGISTER_FAILED = 'REGISTER_FAILED';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const USER_LOADED = 'USER_LOADED';
+export const SEARCH = 'SEARCH';
+export const ADD_FAV = 'ADD_FAV';
+export const REMOVE_FAV = 'REMOVE_FAV';

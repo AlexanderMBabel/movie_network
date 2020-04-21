@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import history from '../../history';
 import { BounceLoader } from 'react-spinners';
+import { connect } from 'react-redux';
+import { selectedResult } from '../../actions/search';
 
-const SearchResults = ({ query, queryType, queryOptions }) => {
+const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
   const [numberOfResults, setNumberOfResults] = useState(0);
   const [apiAddress, setApiAddress] = useState('');
   const [results, setResults] = useState([]);
@@ -41,7 +43,7 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
     switch (queryType) {
       case 'movies':
         axios
-          .get(`https://imdb-api.com/en/API/${queryOptions}/${process.env.REACT_APP_MOVIE_KEY}/${query}`)
+          .get(`${process.env.REACT_APP_MOVIE_URL}/${queryOptions}/${process.env.REACT_APP_MOVIE_KEY}/${query}`)
           .then(res => {
             console.table(res.data.results);
             setResults(res.data.results);
@@ -97,10 +99,11 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
           </div>
           <div style={{ height: '60vh', overflowY: 'scroll' }}>
             {results.map(result => (
-              <div key={result.title} className="flex rounded shadow m-4 p-4 items-center justify-center">
+              <div key={result.id} className="flex rounded shadow m-4 p-4 items-center justify-center">
                 <div className="flex-row">
                   <div
                     onClick={() => {
+                      selectedResult(queryType, result.id);
                       history.push('/Dashboard/Search/More');
                     }}
                     className="w-full text-xl text-gray-800 hover:text-teal-700 "
@@ -121,4 +124,4 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
   );
 };
 
-export default SearchResults;
+export default connect(null, { selectedResult })(SearchResults);
