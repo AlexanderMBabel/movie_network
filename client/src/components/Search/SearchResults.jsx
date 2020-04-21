@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import history from '../../history';
-import Skeleton from 'react-loading-skeleton';
+import { BounceLoader } from 'react-spinners';
 
 const SearchResults = ({ query, queryType, queryOptions }) => {
   const [numberOfResults, setNumberOfResults] = useState(0);
@@ -13,11 +13,11 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
     axios.interceptors.request.use(
       config => {
         console.log('Start ajax');
+        setIsLoaded(false);
 
         return config;
       },
       err => {
-        setIsLoaded(false);
         console.error('interceprot request error');
         return Promise.reject(err);
       }
@@ -83,31 +83,10 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
   }, [query]);
   return (
     <div className="w-full">
-      {isLoaded === 'false' && (
-        <>
-          <div className="flex">
-            <div>
-              <Skeleton />
-            </div>
-          </div>
-          <div style={{ height: '60vh', overflowY: 'scroll' }}>
-            {results.map(result => (
-              <div className="flex rounded shadow m-4 p-4 items-center justify-center">
-                <div className="flex-row">
-                  <div className="w-full ">
-                    <Skeleton />
-                  </div>
-                  <div className="w-full text-sm text-gray-900 ">
-                    <Skeleton />
-                  </div>
-                </div>
-                <div className="w-1/2 ml-6 flex items-center justify-center">
-                  <Skeleton width={200} height={350} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
+      {isLoaded === false && (
+        <div className="flex items-center justify-center" style={{ height: '60vh' }}>
+          <BounceLoader size={100} color={'#319795'} />
+        </div>
       )}
       {isLoaded && (
         <>
@@ -118,7 +97,7 @@ const SearchResults = ({ query, queryType, queryOptions }) => {
           </div>
           <div style={{ height: '60vh', overflowY: 'scroll' }}>
             {results.map(result => (
-              <div className="flex rounded shadow m-4 p-4 items-center justify-center">
+              <div key={result.title} className="flex rounded shadow m-4 p-4 items-center justify-center">
                 <div className="flex-row">
                   <div
                     onClick={() => {

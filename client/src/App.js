@@ -17,6 +17,7 @@ import Reviews from './components/Dashboard/Reviews';
 import Messages from './components/Dashboard/Messages';
 import Lists from './components/Dashboard/Lists';
 import CreateProfile from './components/CreateProfile/CreateProfile';
+import ResultInfo from './components/Search/ResultInfo';
 
 function App({ isAuthenticated, loadUser }) {
   useEffect(() => {
@@ -37,6 +38,7 @@ function App({ isAuthenticated, loadUser }) {
         <ProtectedRoute extact path="/Dashboard/Messages" component={Messages} />
         <ProtectedRoute extact path="/Dashboard/Reviews" component={Reviews} />
         <ProtectedRoute extact path="/Dashboard/Favorites" component={Favorites} />
+        <ProtectedRoute extact path="/Dashboard/Search/More" component={ResultInfo} />
         <ProtectedRoute extact path="/Dashboard/Search" component={Search} />
         <ProtectedRoute extact path="/Dashboard/Profile" component={Profile} />
         <ProtectedRoute extact path="/Dashboard" component={Dashboard} />
