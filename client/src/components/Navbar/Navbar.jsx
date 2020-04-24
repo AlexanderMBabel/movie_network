@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { MdMovieFilter } from 'react-icons/md';
+import { addError } from '../../actions/errors';
 
-const Navbar = ({ isAuthenticated, logout }) => {
+const Navbar = ({ isAuthenticated, logout, addError }) => {
   return (
     <div name="container" className="flex justify-between bg-teal-300 text-gray-700 p-4">
       <div name="links_left" className="flex">
@@ -18,6 +19,9 @@ const Navbar = ({ isAuthenticated, logout }) => {
         <Link className="ml-2" to="/createprofile">
           profile
         </Link>
+        <button className="ml-2" onClick={() => addError('nav test error')}>
+          Add Error
+        </button>
       </div>
       {!isAuthenticated && (
         <div name="links_right" className="">
@@ -50,11 +54,12 @@ const Navbar = ({ isAuthenticated, logout }) => {
 
 Navbar.propTypes = {
   isAuthenticated: PropTypes.bool,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  addError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, addError })(Navbar);

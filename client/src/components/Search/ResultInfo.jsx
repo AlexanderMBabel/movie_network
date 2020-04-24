@@ -19,15 +19,15 @@ const ResultInfo = ({ type, id, addFavorite }) => {
           .then(res => {
             setResultData(res.data);
             console.table(res.data);
-            let tempStarList = [];
-            res.data.starList.forEach(star => {
-              Axios.get(`${process.env.REACT_APP_MOVIE_URL}/Name/${process.env.REACT_APP_MOVIE_KEY}/${star.id}`).then(res => {
-                console.log(res.data);
-                setStarArr([...starArr, res.data]);
-              });
-            });
+            // let tempStarList = [];
+            // res.data.starList.forEach(star => {
+            //   Axios.get(`${process.env.REACT_APP_MOVIE_URL}/Name/${process.env.REACT_APP_MOVIE_KEY}/${star.id}`).then(res => {
+            //     console.log(res.data);
+            //     setStarArr([...starArr, res.data]);
+            //   });
+            // });
 
-            console.log(starArr);
+            // console.log(starArr);
           })
           .catch(err => {
             console.error(err);
@@ -66,7 +66,10 @@ const ResultInfo = ({ type, id, addFavorite }) => {
           <div className="flex justify-between items-center">
             <div className="flex justify-center flex-wrap">
               <div className="w-full">
-                <AiTwotoneHeart onClick={() => addFavorite(resultData.id, type)} className="text-gray-800 hover:text-red-600 text-xl" />
+                <AiTwotoneHeart
+                  onClick={() => addFavorite(resultData.id, type, resultData.image, resultData.title, resultData.plot)}
+                  className="text-gray-800 hover:text-red-600 text-xl"
+                />
               </div>
               <div className="text-xs text-center w-full font-light">Favorite</div>
             </div>

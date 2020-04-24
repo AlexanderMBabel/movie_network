@@ -13,11 +13,13 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('http://localhost:4000/auth', config);
-    console.log(res.data);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/auth`, config);
+    const fav = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/favorites`, config);
+    const users = res.data;
+    const favorites = fav.data;
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: { users, favorites }
     });
     history.push('/Dashboard');
   } catch {
@@ -57,6 +59,7 @@ export const login = body => async dispatch => {
 
   try {
     const res = await axios.post('http://localhost:4000/auth/login', body, config);
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data

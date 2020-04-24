@@ -78,3 +78,18 @@
 .fav-star:hover {
   @apply text-teal-700;
 }
+
+.errors-container {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+  z-index: 10;
+  top: 100;
+  right: 500;
+  transition: all 0.5s;
+}

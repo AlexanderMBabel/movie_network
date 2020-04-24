@@ -13292,6 +13292,20 @@ video {
   color: #2c7a7b;
 }
 
+.errors-container {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+  z-index: 10;
+  top: 100;
+  right: 500;
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;

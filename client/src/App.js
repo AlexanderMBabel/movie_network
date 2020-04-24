@@ -18,6 +18,7 @@ import Messages from './components/Dashboard/Messages';
 import Lists from './components/Dashboard/Lists';
 import CreateProfile from './components/CreateProfile/CreateProfile';
 import ResultInfo from './components/Search/ResultInfo';
+import ShowErrors from './components/ShowErrors';
 
 function App({ isAuthenticated, loadUser }) {
   useEffect(() => {
@@ -25,9 +26,12 @@ function App({ isAuthenticated, loadUser }) {
   }, []);
 
   return (
-    <div className="baloo-font">
+    <div className="baloo-font relative">
       <Navbar />
       {/* {isAuthenticated && <Redirect to="/Dashboard" />} */}
+      <div className="">
+        <ShowErrors />
+      </div>
 
       <Switch>
         <Route extact path="/Signup" component={SignUp} />
