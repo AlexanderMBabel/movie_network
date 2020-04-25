@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 
 /* @Post
    Private
-   Add a favorite id ,type, and email
+   Add a favorite 
 */
 
 router.post('/', auth, async (req, res) => {
@@ -43,7 +43,7 @@ router.post('/', auth, async (req, res) => {
       email: req.email,
       id: id
     });
-    console.log(findExisting.length);
+    c;
   } catch (error) {
     res.json(error);
   }
@@ -51,7 +51,7 @@ router.post('/', auth, async (req, res) => {
   if (findExisting.length < 1) {
     try {
       await favorite.save();
-      console.log('added');
+
       res.json(`Favorite ${id} added`);
     } catch (err) {
       res.status(401).json({
@@ -59,8 +59,26 @@ router.post('/', auth, async (req, res) => {
       });
     }
   } else {
-    console.log('already in favor');
     res.json('Already in favorites');
+  }
+});
+
+/* @POST
+   private
+   remove a favorite by id and email
+*/
+
+router.post('/remove', auth, async (req, res) => {
+  const { id } = req.body;
+  try {
+    const deleted = await Favorites.findOneAndDelete({
+      email: req.email,
+      id
+    });
+    console.log(deleted);
+    res.json(`${id} deleted`);
+  } catch (err) {
+    res.status(400).json(err.message);
   }
 });
 

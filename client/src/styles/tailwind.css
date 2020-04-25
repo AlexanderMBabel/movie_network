@@ -13306,6 +13306,38 @@ video {
   right: 500;
 }
 
+.fav-remove-button {
+  font-size: 1.5rem;
+  color: #2d3748;
+  position: relative;
+}
+
+.fav-remove-button:hover {
+  color: #319795;
+}
+
+.fav-remove-button::before {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  content: 'remove';
+}
+
+.fav-remove-button::after {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  display: block;
+  content: 'remove';
+}
+
+.fav-remove-button:hover::after {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  content: 'remove';
+}
+
 @media (min-width: 640px){
   .sm\:sr-only{
     position: absolute;

@@ -7,8 +7,9 @@ import { AiTwotoneHeart } from 'react-icons/ai';
 import { MdRateReview } from 'react-icons/md';
 import { FaRegStar } from 'react-icons/fa';
 import { addFavorite } from '../../actions/favorite';
+import { addError } from '../../actions/errors';
 
-const ResultInfo = ({ type, id, addFavorite }) => {
+const ResultInfo = ({ type, id, addFavorite, addError }) => {
   const [resultData, setResultData] = useState(null);
   const [starList, setStarlist] = useState(null);
   const [starArr, setStarArr] = useState([]);
@@ -19,15 +20,6 @@ const ResultInfo = ({ type, id, addFavorite }) => {
           .then(res => {
             setResultData(res.data);
             console.table(res.data);
-            // let tempStarList = [];
-            // res.data.starList.forEach(star => {
-            //   Axios.get(`${process.env.REACT_APP_MOVIE_URL}/Name/${process.env.REACT_APP_MOVIE_KEY}/${star.id}`).then(res => {
-            //     console.log(res.data);
-            //     setStarArr([...starArr, res.data]);
-            //   });
-            // });
-
-            // console.log(starArr);
           })
           .catch(err => {
             console.error(err);
@@ -113,11 +105,12 @@ const ResultInfo = ({ type, id, addFavorite }) => {
 ResultInfo.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  addFavorite: PropTypes.func.isRequired
+  addFavorite: PropTypes.func.isRequired,
+  addError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   id: state.search.id,
   type: state.search.type
 });
-export default connect(mapStateToProps, { addFavorite })(ResultInfo);
+export default connect(mapStateToProps, { addFavorite, addError })(ResultInfo);

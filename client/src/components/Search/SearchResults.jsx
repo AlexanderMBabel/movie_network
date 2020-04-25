@@ -4,13 +4,15 @@ import history from '../../history';
 import { BounceLoader } from 'react-spinners';
 import { connect } from 'react-redux';
 import { selectedResult } from '../../actions/search';
+import { addError } from '../../actions/errors';
 
-const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
+const SearchResults = ({ query, queryType, queryOptions, selectedResult, addError }) => {
   const [numberOfResults, setNumberOfResults] = useState(0);
   const [apiAddress, setApiAddress] = useState('');
   const [results, setResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(null);
 
+  // set axios interceptors for loading spinner
   useEffect(() => {
     axios.interceptors.request.use(
       config => {
@@ -36,7 +38,11 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
         return Promise.reject(err);
       }
     );
+
+    return () => {};
   }, []);
+
+  // make api calls to search using query
 
   useEffect(() => {
     delete axios.defaults.headers.common['x-auth-token'];
@@ -45,12 +51,11 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
         axios
           .get(`${process.env.REACT_APP_MOVIE_URL}/${queryOptions}/${process.env.REACT_APP_MOVIE_KEY}/${query}`)
           .then(res => {
-            console.table(res.data.results);
             setResults(res.data.results);
             setNumberOfResults(res.data.results.length);
           })
           .catch(err => {
-            console.log(err);
+            addError({ alert: err, type: 'error' });
           });
         break;
       case 'games':
@@ -68,6 +73,7 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
           })
           .catch(err => {
             console.error(err);
+            addError({ alert: err, type: 'error' });
           });
         break;
       case 'books':
@@ -78,10 +84,14 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
           })
           .catch(err => {
             console.error(err);
+            addError({ alert: err, type: 'error' });
           });
 
-        defualt: break;
+      default:
+        break;
     }
+
+    return () => {};
   }, [query]);
   return (
     <div className="w-full">
@@ -124,4 +134,4 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult }) => {
   );
 };
 
-export default connect(null, { selectedResult })(SearchResults);
+export default connect(null, { selectedResult, addError })(SearchResults);

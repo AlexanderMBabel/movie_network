@@ -13,12 +13,13 @@ import { loadUser } from './actions/auth';
 import Profile from './components/Dashboard/Profile';
 import Search from './components/Search/Search';
 import Favorites from './components/Dashboard/Favorites';
-import Reviews from './components/Dashboard/Reviews';
+import Reviews from './components/Dashboard/Review/Reviews';
 import Messages from './components/Dashboard/Messages';
 import Lists from './components/Dashboard/Lists';
 import CreateProfile from './components/CreateProfile/CreateProfile';
 import ResultInfo from './components/Search/ResultInfo';
 import ShowErrors from './components/ShowErrors';
+import AddReview from './components/Dashboard/Review/AddReview';
 
 function App({ isAuthenticated, loadUser }) {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App({ isAuthenticated, loadUser }) {
         <Route extact path="/createprofile" component={CreateProfile} />
         <ProtectedRoute extact path="/Dashboard/Lists" component={Lists} />
         <ProtectedRoute extact path="/Dashboard/Messages" component={Messages} />
+        <ProtectedRoute extact path="/Dashboard/Reviews/Add" component={AddReview} />
         <ProtectedRoute extact path="/Dashboard/Reviews" component={Reviews} />
         <ProtectedRoute extact path="/Dashboard/Favorites" component={Favorites} />
         <ProtectedRoute extact path="/Dashboard/Search/More" component={ResultInfo} />

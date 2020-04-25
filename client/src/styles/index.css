@@ -91,5 +91,27 @@
   z-index: 10;
   top: 100;
   right: 500;
-  transition: all 0.5s;
+}
+
+.fav-remove-button {
+  @apply text-2xl text-gray-800;
+  position: relative;
+}
+.fav-remove-button:hover {
+  @apply text-teal-600;
+}
+.fav-remove-button::before {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  content: 'remove';
+}
+.fav-remove-button::after {
+  @apply text-sm font-semibold text-gray-700;
+  display: block;
+  content: 'remove';
+}
+.fav-remove-button:hover::after {
+  @apply text-sm font-semibold text-gray-700;
+  content: 'remove';
 }
