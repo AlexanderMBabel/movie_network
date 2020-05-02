@@ -4,28 +4,26 @@ import Axios from 'axios';
 
 const ImageUpload = () => {
   const [imageLocation, setImageLocation] = useState(null);
-  const [image, setImage] = useState('');
-  const [imageName, setImageName] = useState('');
-  const [errors, setErrors] = useState([]);
+  
 
   let imageStyle = {
     backgroundImage: `url(${imageLocation})`
   };
 
-  const imageValidate = image => {
-    let isValid = true;
-    if (image.type === 'image/png' || image.type === 'image/jpg' || image.type === 'image/jpeg') {
-      isValid = true;
-    } else {
-      isValid = false;
-    }
-    if (image.size > 5242880) {
-      console.error('image too big');
-      //   setErrors([...errors, 'Image must be less than 5MB']);
-      isValid = false;
-    }
-    return isValid;
-  };
+  // const imageValidate = image => {
+  //   let isValid = true;
+  //   if (image.type === 'image/png' || image.type === 'image/jpg' || image.type === 'image/jpeg') {
+  //     isValid = true;
+  //   } else {
+  //     isValid = false;
+  //   }
+  //   if (image.size > 5242880) {
+  //     console.error('image too big');
+  //     //   setErrors([...errors, 'Image must be less than 5MB']);
+  //     isValid = false;
+  //   }
+  //   return isValid;
+  // };
 
   const changeHandler = async e => {
     // setImage(e.target.files[0]);

@@ -5,7 +5,8 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
-  favorites: null
+  favorites: null,
+  reviews: null
 };
 
 export default function(state = initialState, action) {

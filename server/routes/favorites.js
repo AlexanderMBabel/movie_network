@@ -43,7 +43,7 @@ router.post('/', auth, async (req, res) => {
       email: req.email,
       id: id
     });
-    c;
+    
   } catch (error) {
     res.json(error);
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import Sidenav from './Sidenav';
 import { connect } from 'react-redux';
 import Axios from 'axios';
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 const Favorites = ({ addError, removeFav, selectedResult }) => {
   const [allFavs, setAllFavs] = useState([]);
-  const [highlightInfo, setHighlightInfo] = useState('');
+  
   const [removedId, setRemovedId] = useState('');
 
   useLayoutEffect(() => {

@@ -1,6 +1,6 @@
 import { REGISTER_SUCCESS, REGISTER_FAILED, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from '../actions/types';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
+
 import history from '../history';
 export const loadUser = () => async dispatch => {
   let config;
@@ -15,11 +15,13 @@ export const loadUser = () => async dispatch => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/auth`, config);
     const fav = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/favorites`, config);
+    const rev = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/reviews/user`, config)
     const users = res.data;
     const favorites = fav.data;
+    const reviews = rev.data;
     dispatch({
       type: USER_LOADED,
-      payload: { users, favorites }
+      payload: { users, favorites, reviews }
     });
     history.push('/Dashboard');
   } catch {
@@ -42,6 +44,7 @@ export const register = body => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+    dispatch(loadUser())
     history.push('/createprofile');
   } catch (error) {
     dispatch({
@@ -64,6 +67,7 @@ export const login = body => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
+    dispatch(loadUser())
     history.push('/Dashboard');
   } catch (err) {
     dispatch({

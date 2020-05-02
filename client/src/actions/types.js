@@ -11,3 +11,4 @@ export const REMOVE_FAV = 'REMOVE_FAV';
 export const ADD_ERROR = 'ADD_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 export const REMOVE_ALL_ERRORS = 'REMOVE_ALL_ERRORS';
+export const ADD_RATING = 'ADD_RATING'

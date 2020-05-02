@@ -11,8 +11,7 @@ import { addError } from '../../actions/errors';
 
 const ResultInfo = ({ type, id, addFavorite, addError }) => {
   const [resultData, setResultData] = useState(null);
-  const [starList, setStarlist] = useState(null);
-  const [starArr, setStarArr] = useState([]);
+  
   useEffect(() => {
     switch (type) {
       case 'movies':

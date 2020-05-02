@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
     res.json(userEmail);
   } catch (error) {
     console.log(error);
+    res.status(401).json(error)
   }
 });
 

@@ -8,7 +8,7 @@ import { addError } from '../../actions/errors';
 
 const SearchResults = ({ query, queryType, queryOptions, selectedResult, addError }) => {
   const [numberOfResults, setNumberOfResults] = useState(0);
-  const [apiAddress, setApiAddress] = useState('');
+ 
   const [results, setResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(null);
 
@@ -86,7 +86,7 @@ const SearchResults = ({ query, queryType, queryOptions, selectedResult, addErro
             console.error(err);
             addError({ alert: err, type: 'error' });
           });
-
+          break;
       default:
         break;
     }

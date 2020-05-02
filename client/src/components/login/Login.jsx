@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+ 
 
   const changeHandler = e => {
     if (e.target.name === 'email') {

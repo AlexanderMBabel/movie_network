@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Login from './components/login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Landing from './components/landing/Landing';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
 import PasswordRecover from './components/login/PasswordRecover';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import { connect } from 'react-redux';
-import setAuthToken from './utils/setAuthToken';
+
 import { loadUser } from './actions/auth';
 import Profile from './components/Dashboard/Profile';
 import Search from './components/Search/Search';
