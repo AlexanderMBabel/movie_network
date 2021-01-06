@@ -4,7 +4,7 @@
   "homepage": "https://bit.dev/alexandermbabel/emn/text-editor",
   "main": "dist/TextEditor.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "draft-js": "^0.11.5",
     "react": "^16.13.1"
   },
